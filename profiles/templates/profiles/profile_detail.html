@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}{{profile.user}}{% endblock %}
+{% block content %}
+<main role="main">
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-9 mx-auto">
+        <h2 class="section-heading mb-4">{{profile.user}}</h2>
+        <div>
+          <td>
+          <th><p>{{profile.avatar|safe}}</p></th>
+          <th><p>{{profile.bio|safe}}</p></th>
+          <th><p>{{profile.link|safe}}</p></th>
+          </td>
+          {% if request.user.is_staff %}
+            <p><a href="{% url 'profiles:update_profile' profile.id %}">Editar</a></p>
+            <p><a href="{% url 'profiles:delete_profile' profile.id %}">Borrar</a></p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+<!-- Hay que añadir botones para ver fichas técnicas y poder subirlas, así como el resto de documentos. También ver una imagen de perfil del vehículo. -->
