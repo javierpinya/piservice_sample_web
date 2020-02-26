@@ -7,14 +7,26 @@
   <div class="container">
     <div class="row mt-3 mb-3">
       <div class="col-md-9 mx-auto">
-        <div>
-            <form action="" method="post">{% csrf_token %}
-                {{ form.as_p }}
-              <div class="text-center">
-                <input type="submit" class="btn btn-primary btn-block" value="Crear vehículo" />
-              </div>
-            </form>
-        </div>
+        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+          <div class="row">
+            <!-- Previa del avatar -->
+            <div class="col-md-2">
+              {% if request.vehiculo.avatar %}
+                <img src="{{request.vehiculo.avatar.url}}" class="img-fluid">
+                <p class="mt-1">¿Borrar? <input type="checkbox" id="avatar-clear" name="avatar-clear" /></p>
+              {% else %}
+                <img src="{% static 'vehiculos/img/no-truck_r.png' %}" class="img-fluid">
+              {% endif %}
+            </div>
+            <!-- Formulario -->
+            <div class="col-md-6">
+              <h3>Vehículo</h3>
+              <input type="file" name="avatar" class="form-control-file mt-3" id="id_avatar">
+              {{form.as_p}}
+              <input type="submit" class="btn btn-primary btn-block mt-3" value="Actualizar">
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>

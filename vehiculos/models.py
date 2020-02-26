@@ -6,6 +6,7 @@ from ckeditor.fields import RichTextField
 class Vehiculo(models.Model):
 	tipo = models.CharField(verbose_name='Tipo de Vehículo',max_length=1)
 	matricula = models.CharField(verbose_name='Matrícula',max_length=8)
+	avatar = models.ImageField(upload_to='profiles',null=True, blank=True)
 	ejes = models.IntegerField(verbose_name='Ejes',blank=True,null=True)
 	contador = models.BooleanField(verbose_name='Contador', blank=True,null=True)
 	compartimentos = models.IntegerField(verbose_name='Compartimentos',blank=True,null=True)
