@@ -7,7 +7,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse, reverse_lazy
 from .models import Vehiculo
-from .forms import VehiculoForm,VehiculoUpdateForm
+from .forms import VehiculoForm,VehiculoUpdateForm,VehiculoDetailForm
 # Create your views here.
 
 class StaffRequiredMixin(object):
@@ -23,6 +23,11 @@ class VehiculoListView(ListView):
 
 class VehiculoDetailView(DetailView):
 	model = Vehiculo
+	template_name = "vehiculos/vehiculo_detail.html"
+	form_class = VehiculoDetailForm
+
+	def get_success_url(self):
+		return reverse_lazy('vehiculos:update_vehiculo', args=[self.object.id])
 
 @method_decorator(staff_member_required,name='dispatch')
 class VehiculoCreateView(CreateView):

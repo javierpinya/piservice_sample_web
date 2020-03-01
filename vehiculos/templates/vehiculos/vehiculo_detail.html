@@ -5,24 +5,48 @@
 {% include 'vehiculos/includes/vehiculos_menu.html' %}
 <main role="main">
   <div class="container">
-    <div class="row mt-3">
+    <div class="row mt-3 mb-3">
       <div class="col-md-9 mx-auto">
         <h2 class="section-heading mb-4">{{vehiculo.matricula}}</h2>
-        <div>
-          <td>
-          <th><p>{{vehiculo.tipo|safe}}</p></th>
-          <th><p>{{vehiculo.matricula|safe}}</p></th>
-          <th><p>{{vehiculo.fechaadr|safe}}</p></th>
-          <th><p>{{vehiculo.fechaitv|safe}}</p></th>
-          <th><p>{{vehiculo.fechatablas|safe}}</p></th>
-          <th><p>{{vehiculo.fechaarnes|safe}}</p></th>
-          <th><p>{{vehiculo.fechatablas|safe}}</p></th>
-          </td>
-          {% if request.user.is_staff %}
-            <p><a href="{% url 'vehiculos:update_vehiculo' vehiculo.id %}">Editar</a></p>
-            <p><a href="{% url 'vehiculos:delete_vehiculo' vehiculo.id %}">Borrar</a></p>
-          {% endif %}
-        </div>
+          <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+            <div class="row">
+              <!-- Previa del avatar -->
+              <div class="col-md-2">
+                {% if request.vehiculo.avatar %}
+                  <img src="{{request.vehiculo.avatar.url}}" class="img-fluid">
+                  <p class="mt-1">¿Borrar? <input type="checkbox" id="avatar-clear" name="avatar-clear" /></p>
+                {% else %}
+                  <img src="{% static 'vehiculos/img/no-truck_r.png' %}" class="img-fluid">
+                {% endif %}
+              </div>
+              <!-- Formulario -->
+              <div class="col-md-6">
+                <h3>Vehículo</h3>
+                <td>
+                  <th>{{vehiculo.tipo}}</th>
+                  <th>{{vehiculo.matricula}}</th>
+                  {{vehiculo.ejes}}
+                  {{vehiculo.tara}}
+                  {{vehiculo.peso_maximo}}
+                  {{vehiculo.carga_pesados}}
+                  {{vehiculo.solo_gasoleos}}
+                  {{vehiculo.no_petroliferos}}
+                  {{vehiculo.carga_queroseno}}
+                  {{vehiculo.equipos_adicional}}
+                  {{vehiculo.equipos}}
+                  {{vehiculo.contador}}
+                  {{vehiculo.compartimentos}}
+                  {{vehiculo.fechaadr}}
+                  {{vehiculo.fechaitv}}
+                  {{vehiculo.fechatablas}}
+                  {{vehiculo.fechatarjetatte}}
+                  {{vehiculo.observaciones}}
+                  {{vehiculo.editado}}
+                  {{vehiculo.creado}}
+                </td>
+              </div>
+            </div>
+          </form>
       </div>
     </div>
   </div>
