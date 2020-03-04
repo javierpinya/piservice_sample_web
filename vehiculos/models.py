@@ -1,5 +1,5 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+#from ckeditor.fields import RichTextField
 from .choices import *
 
 
@@ -17,7 +17,7 @@ class Vehiculo(models.Model):
 	no_petroliferos = models.BooleanField(verbose_name='No Petrolíferos',default=False)
 	carga_queroseno = models.BooleanField(verbose_name='Carga Queroseno',default=False)
 	equipo_adicional = models.BooleanField(verbose_name='Equipo Adicional', default=False)
-	equipos = RichTextField(verbose_name='Indicar equipos adicionales',null=True,blank=True)
+	equipos = models.TextField(verbose_name='Indicar equipos adicionales',null=True,blank=True)
 	contador = models.BooleanField(verbose_name='Contador', blank=True,null=True)
 	compartimentos = models.IntegerField(verbose_name='Compartimentos',blank=True,null=True)
 	tipo_adr = models.CharField(verbose_name='Tipo ADR',max_length=8,blank=True,null=True)
@@ -25,7 +25,7 @@ class Vehiculo(models.Model):
 	fechaitv = models.DateTimeField(verbose_name='Fecha ITV')
 	fechatablas = models.DateTimeField(verbose_name='Fecha Tablas Calibración')
 	fechatarjetatte = models.DateTimeField(verbose_name='Fecha Tarjeta Tte')
-	observaciones = RichTextField(verbose_name='Observaciones',null=True,blank=True)
+	observaciones = models.TextField(verbose_name='Observaciones',null=True,blank=True)
 	editado = models.DateTimeField(auto_now=True,verbose_name='Editado')
 	creado = models.DateTimeField(auto_now_add=True,verbose_name='Creado')
 

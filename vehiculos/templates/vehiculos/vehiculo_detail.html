@@ -21,29 +21,107 @@
               </div>
               <!-- Formulario -->
               <div class="col-md-6">
-                <h3>Vehículo</h3>
-                <td>
-                  <th>{{vehiculo.tipo}}</th>
-                  <th>{{vehiculo.matricula}}</th>
-                  {{vehiculo.ejes}}
-                  {{vehiculo.tara}}
-                  {{vehiculo.peso_maximo}}
-                  {{vehiculo.carga_pesados}}
-                  {{vehiculo.solo_gasoleos}}
-                  {{vehiculo.no_petroliferos}}
-                  {{vehiculo.carga_queroseno}}
-                  {{vehiculo.equipos_adicional}}
-                  {{vehiculo.equipos}}
-                  {{vehiculo.contador}}
-                  {{vehiculo.compartimentos}}
-                  {{vehiculo.fechaadr}}
-                  {{vehiculo.fechaitv}}
-                  {{vehiculo.fechatablas}}
-                  {{vehiculo.fechatarjetatte}}
-                  {{vehiculo.observaciones}}
-                  {{vehiculo.editado}}
-                  {{vehiculo.creado}}
-                </td>
+                <ul class="list-unstyled mt-4 text-medium">
+                  <li>
+			<span>Tipo de Vehículo:
+			</span>
+			{{vehiculo.tipo}}
+                  </li>
+		  <li>
+			<span>Matrícula:
+			</span>
+			{{vehiculo.matricula}}
+		  </li>
+		  <li>
+			<span>Num ejes:
+			</span>
+			{{vehiculo.ejes}}
+		  </li>
+		  <li>
+			<span>Tara:
+			</span>
+			{{vehiculo.tara}}
+		  </li>
+		  <li>
+			<span>Peso Máximo:
+			</span>
+			{{vehiculo.peso_maximo}}
+		  </li>
+		  <li>
+			<span>Carga Pesados:
+			</span>
+			{{vehiculo.carga_pesados}}
+		  </li>
+		  <li>
+			<span>Solo Gasóleos:
+			</span>
+			{{vehiculo.solo_gasoleos}}
+		  </li>
+		  <li>
+			<span>No Petrolíferos:
+			</span>
+			{{vehiculo.no_petroliferos}}
+		  </li>
+		  <li>
+			<span>Carga Querosenos:
+			</span>
+			{{vehiculo.carga_queroseno}}
+		  </li>
+		  <li>
+			<span>Equipos Adicionales:
+			</span>
+			{{vehiculo.equipo_adicional}}
+		  </li>
+		  <li>
+			<span>Equipos:
+			</span>
+			{{vehiculo.equipos}}
+		  </li>
+		  <li>
+			<span>Contador:
+			</span>
+			{{vehiculo.contador}}
+		  </li>
+		  <li>
+			<span>Compartimentos:
+			</span>
+			{{vehiculo.compartimentos}}
+		  </li>
+		  <li>
+			<span>Fecha ADR:
+			</span>
+			{{vehiculo.fechaadr|date}}
+		  </li>
+		  <li>
+			<span>Fecha ITV:
+			</span>
+			{{vehiculo.fechaitv|date}}
+		  </li>
+		  <li>
+			<span>Fecha Tablas de Calibración:
+			</span>
+			{{vehiculo.fechatablas|date}}
+		  </li>
+		  <li>
+			<span>Fecha Tarjeta Tte:
+			</span>
+			{{vehiculo.fechatarjetatte|date}}
+		  </li>
+		  <li>
+			<span>Observaciones:
+			</span>
+			{{vehiculo.observaciones}}
+		  </li>
+		  <li>
+			<span>Editado:
+			</span>
+			{{vehiculo.editado|date}}
+		  </li>
+		  <li>
+			<span>Creado:
+			</span>
+			{{vehiculo.creado|date}}
+		  </li>
               </div>
             </div>
           </form>
