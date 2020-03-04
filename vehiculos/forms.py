@@ -75,7 +75,7 @@ class VehiculoUpdateForm(forms.ModelForm):
 					'tara':'',
 					'peso_maximo':'',
 					'equipos':'Indicar equipos adicionales',
-					'contador':'',
+					'contador':'Contador propio',
 					'compartimentos':'',
 					'fechaadr': 'Fecha ADR',
 					'fechaitv':'Fecha ITV',
