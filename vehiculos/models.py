@@ -17,12 +17,8 @@ class Vehiculo(models.Model):
 	no_petroliferos = models.BooleanField(verbose_name='No Petrolíferos',default=False)
 	carga_queroseno = models.BooleanField(verbose_name='Carga Queroseno',default=False)
 	equipo_adicional = models.BooleanField(verbose_name='Equipo Adicional', default=False)
-<<<<<<< HEAD
-	equipos = models.TextField(verbose_name='Indicar equipos adicionales',null=True,blank=True)
-=======
 	#equipos = RichTextField(verbose_name='Indicar equipos adicionales',null=True,blank=True)
 	equipos = models.CharField(verbose_name='Indicar equipos adicionales',null=True,blank=True,max_length=500)
->>>>>>> dc1274b7603ab866f129c0127e5528e6d61abe0f
 	contador = models.BooleanField(verbose_name='Contador', blank=True,null=True)
 	compartimentos = models.IntegerField(verbose_name='Compartimentos',blank=True,null=True)
 	tipo_adr = models.CharField(verbose_name='Tipo ADR',max_length=8,blank=True,null=True)
@@ -30,12 +26,8 @@ class Vehiculo(models.Model):
 	fechaitv = models.DateTimeField(verbose_name='Fecha ITV')
 	fechatablas = models.DateTimeField(verbose_name='Fecha Tablas Calibración')
 	fechatarjetatte = models.DateTimeField(verbose_name='Fecha Tarjeta Tte')
-<<<<<<< HEAD
-	observaciones = models.TextField(verbose_name='Observaciones',null=True,blank=True)
-=======
 	#observaciones = RichTextField(verbose_name='Observaciones',null=True,blank=True)
 	observaciones = models.CharField(verbose_name='Observaciones',null=True,blank=True,max_length=500)
->>>>>>> dc1274b7603ab866f129c0127e5528e6d61abe0f
 	editado = models.DateTimeField(auto_now=True,verbose_name='Editado')
 	creado = models.DateTimeField(auto_now_add=True,verbose_name='Creado')
 
