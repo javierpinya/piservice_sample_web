@@ -2,6 +2,7 @@ from django import forms
 from .models import Vehiculo
 from .choices import *
 
+#prueba
 
 class DateInput(forms.DateInput):
 	input_type = 'date'
