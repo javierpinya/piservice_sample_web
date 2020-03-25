@@ -11,7 +11,7 @@ class VehiculoForm(forms.ModelForm):
 	class Meta:
 		model = Vehiculo
 		fields = ['tipo','matricula','ejes','tara','peso_maximo','carga_pesados','solo_gasoleos','no_petroliferos','carga_queroseno','equipo_adicional','equipos','contador','compartimentos','fechaadr','fechaitv','fechatablas','fechatarjetatte','observaciones']
-		widgets = {	
+		widgets = {
 					'matricula':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Matrícula'}),
 					'ejes':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ejes'}),
 					'tara':forms.TextInput(attrs={'class':'form-control','placeholder':'Tara','type':'number'}),
@@ -24,10 +24,10 @@ class VehiculoForm(forms.ModelForm):
 					'equipos':forms.Textarea(attrs={'class':'form-control','placeholder':'Indicar equipos adicionales'}),
 					'contador':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Contador'}),
 					'compartimentos':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Compartimentos'}),
-					'fechaadr':DateInput(attrs={'class':'form-control', 'placeholder':'Fecha ADR'}),
-					'fechaitv':DateInput(attrs={'class':'form-control', 'placeholder':'Fecha ITV'}),
-					'fechatablas':DateInput(attrs={'class':'form-control', 'placeholder':'Fecha Tablas de Calibración'}),
-					'fechatarjetatte':DateInput(attrs={'class':'form-control', 'placeholder':'Fecha Tarjeta Tte'}),
+					'fechaadr':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha ADR'}),
+					'fechaitv':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha ITV'}),
+					'fechatablas':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha Tablas de Calibración'}),
+					'fechatarjetatte':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha Tarjeta Tte'}),
 					'observaciones':forms.Textarea(attrs={'class':'form-control', 'placeholder':'Observaciones'}),
 				}
 		labels = {	'tipo':'',
@@ -50,7 +50,7 @@ class VehiculoUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Vehiculo
 		fields = ['tipo','matricula','ejes','tara','peso_maximo','carga_pesados','solo_gasoleos','no_petroliferos','carga_queroseno','equipo_adicional','equipos','contador','compartimentos','fechaadr','fechaitv','fechatablas','fechatarjetatte','observaciones']
-		widgets = {	
+		widgets = {
 					'matricula':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Matrícula'}),
 					'ejes':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ejes'}),
 					'tara':forms.TextInput(attrs={'class':'form-control','placeholder':'Tara','type':'number'}),
@@ -63,10 +63,10 @@ class VehiculoUpdateForm(forms.ModelForm):
 					'equipos':forms.Textarea(attrs={'class':'form-control','placeholder':'Indicar equipos adicionales'}),
 					'contador':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Contador'}),
 					'compartimentos':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Compartimentos'}),
-					'fechaadr':DateInput(attrs={'class':'form-control', 'placeholder':'Fecha ADR'}),
-					'fechaitv':DateInput(attrs={'class':'form-control', 'placeholder':'Fecha ITV'}),
-					'fechatablas':DateInput(attrs={'class':'form-control', 'placeholder':'Fecha Tablas de Calibración'}),
-					'fechatarjetatte':DateInput(attrs={'class':'form-control', 'placeholder':'Fecha Tarjeta Tte'}),
+					'fechaadr':DateInput(format=('%Y-%m-%d'), attrs={'class':'form-control', 'placeholder':'Fecha ADR'}),
+					'fechaitv':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha ITV'}),
+					'fechatablas':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha Tablas de Calibración'}),
+					'fechatarjetatte':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha Tarjeta Tte'}),
 					'observaciones':forms.Textarea(attrs={'class':'form-control', 'placeholder':'Observaciones'}),
 				}
 		labels = {	'tipo':'',
@@ -89,7 +89,7 @@ class VehiculoDetailForm(forms.ModelForm):
 	class Meta:
 		model = Vehiculo
 		fields = ['tipo','matricula','ejes','tara','peso_maximo','carga_pesados','solo_gasoleos','no_petroliferos','carga_queroseno','equipo_adicional','equipos','contador','compartimentos','fechaadr','fechaitv','fechatablas','fechatarjetatte','observaciones']
-		widgets = {	
+		widgets = {
 					'matricula':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Matrícula'}),
 					'ejes':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ejes'}),
 					'tara':forms.TextInput(attrs={'class':'form-control','placeholder':'Tara','type':'number'}),
@@ -102,10 +102,10 @@ class VehiculoDetailForm(forms.ModelForm):
 					'equipos':forms.Textarea(attrs={'class':'form-control','placeholder':'Indicar equipos adicionales'}),
 					'contador':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Contador'}),
 					'compartimentos':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Compartimentos'}),
-					'fechaadr':DateInput(attrs={'class':'form-control', 'placeholder':'Fecha ADR'}),
-					'fechaitv':DateInput(attrs={'class':'form-control', 'placeholder':'Fecha ITV'}),
-					'fechatablas':DateInput(attrs={'class':'form-control', 'placeholder':'Fecha Tablas de Calibración'}),
-					'fechatarjetatte':DateInput(attrs={'class':'form-control', 'placeholder':'Fecha Tarjeta Tte'}),
+					'fechaadr':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha ADR'}),
+					'fechaitv':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha ITV'}),
+					'fechatablas':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha Tablas de Calibración'}),
+					'fechatarjetatte':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha Tarjeta Tte'}),
 					'observaciones':forms.Textarea(attrs={'class':'form-control', 'placeholder':'Observaciones'}),
 				}
 		labels = {	'tipo':'',
@@ -122,3 +122,6 @@ class VehiculoDetailForm(forms.ModelForm):
 					'fechatarjetatte':'Fecha Tarjeta Tte',
 					'observaciones':'Observaciones',
 					}
+
+class SearchForm(forms.Form):
+    query = forms.CharField(label="",widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Buscar...'}))

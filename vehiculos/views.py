@@ -7,7 +7,8 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse, reverse_lazy
 from .models import Vehiculo
-from .forms import VehiculoForm,VehiculoUpdateForm,VehiculoDetailForm
+from .forms import VehiculoForm,VehiculoUpdateForm,VehiculoDetailForm,SearchForm
+from django.db.models import Q
 # Create your views here.
 
 class StaffRequiredMixin(object):
@@ -36,7 +37,7 @@ class VehiculoCreateView(CreateView):
 	template_name="vehiculos/vehiculo_form.html"
 	success_url = reverse_lazy('vehiculos:vehiculos')
 
-	
+
 @method_decorator(staff_member_required,name='dispatch')
 class VehiculoUpdateView(UpdateView):
 	model = Vehiculo
@@ -50,3 +51,31 @@ class VehiculoUpdateView(UpdateView):
 class VehiculoDeleteView(DeleteView):
 	model = Vehiculo
 	success_url = reverse_lazy('vehiculos:vehiculos')
+
+@method_decorator(staff_member_required,name='dispatch')
+class VehiculoSearchView(ListView):
+    model = Vehiculo
+    template_name = "vehiculos/vehiculo_search.html"
+
+    def get_context_data(self,request,*args,**kwargs):
+        queryset = request.GET.get("buscar")
+        if(queryset):
+            vehiculos = Vehiculo.objects.filter(
+                Q(matricula = queryset) |
+                Q(observaciones = queryset)
+            ).distinct()
+        return reverse_lazy('vehiculos:vehiculos',args=[self.object.id])
+
+def vehiculo_search(request):
+    form = SearchForm()
+    query = None
+    results = []
+
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            results = Vehiculo.objects.filter(matricula__icontains=query) | Vehiculo.objects.filter(tipo__icontains=query)
+    return render(request,
+                'vehiculos/vehiculo_search.html',
+                {'form':form,'query':query,'results':results})

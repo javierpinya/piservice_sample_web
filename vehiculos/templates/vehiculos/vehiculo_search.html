@@ -1,0 +1,34 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Vehículos{% endblock %}
+{% block content %}
+{% include 'vehiculos/includes/vehiculos_menu.html' %}
+<main role="main">
+  <div class="container">
+    <div class="row mt-3 mb-3">
+      <div class="col-md-9 mx-auto">
+        {% if query %}
+            <h1>Vehículos que contienen "{{query}}"</h1>
+            <h3>{% with results.count as total_results %} Encontrados {{ total_results}} resultado {{total_results|pluralize}}{% endwith %}</h3>
+            {% for vehiculo in results %}
+                <h4><a href="{% url 'vehiculos:vehiculo' vehiculo.id vehiculo.matricula|slugify %}">{{vehiculo.matricula}}</a></h4>
+                {% empty %}
+                <p>Sin resultados para la búsqueda.</p>
+            {% endfor %}
+            <p><a href="{% url 'vehiculos:vehiculo_search' %}">Buscar</a></p>
+        {% else %}
+            <div class="col-md-6">
+                <h1>Buscar Vehículos</h1>
+                <div class="row">
+                <form action="" method="get" enctype="multipart/form-data">{% csrf_token %}
+
+                    {{form.as_p}}
+                    <input type="submit" class="btn btn-primary btn-block mt-3" value="Buscar Vehículo">
+                </form>
+                </div>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
