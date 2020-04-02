@@ -9,9 +9,10 @@
       <div class="col-md-9 mx-auto">
         {% if query %}
             <h1>Vehículos que contienen "{{query}}"</h1>
-            <h3>{% with results.count as total_results %} Encontrados {{ total_results}} resultado {{total_results|pluralize}}{% endwith %}</h3>
+            <h3>{% with results.count as total_results %} Encontrados {{ total_results}} resultado{{total_results|pluralize}}{% endwith %}</h3>
             {% for vehiculo in results %}
                 <h4><a href="{% url 'vehiculos:vehiculo' vehiculo.id vehiculo.matricula|slugify %}">{{vehiculo.matricula}}</a></h4>
+                <h6><a href="{% url 'vehiculos:vehiculo' vehiculo.id vehiculo.matricula|slugify %}">Tipo de vehículo: {{vehiculo.tipo}}</a></h6>
                 {% empty %}
                 <p>Sin resultados para la búsqueda.</p>
             {% endfor %}

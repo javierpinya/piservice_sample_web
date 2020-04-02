@@ -1,0 +1,9 @@
+{% if ultimos_coches %}
+	<ul>
+		{% for coches in ultimos_coches %}
+			<li><a href="{% url 'vehiculos:detail' coches.id %}">{{coches.matricula}}</a></li>
+		{%endfor%}
+	</ul>
+{% else %}
+	<p>Sin coches disponibles</p>
+{% endif %}

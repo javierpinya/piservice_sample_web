@@ -1,5 +1,5 @@
 from django import forms
-from .models import Vehiculo
+from .models import Vehiculo, Compartimentos
 from .choices import *
 
 #prueba
@@ -11,7 +11,7 @@ class VehiculoForm(forms.ModelForm):
 	tipo = forms.ChoiceField(choices=TIPO_VEHICULO,label="",initial='',widget=forms.Select(),required=True)
 	class Meta:
 		model = Vehiculo
-		fields = ['tipo','matricula','ejes','tara','peso_maximo','carga_pesados','solo_gasoleos','no_petroliferos','carga_queroseno','equipo_adicional','equipos','contador','compartimentos','fechaadr','fechaitv','fechatablas','fechatarjetatte','observaciones']
+		fields = ['tipo','matricula','ejes','tara','peso_maximo','carga_pesados','solo_gasoleos','no_petroliferos','carga_queroseno','equipo_adicional','equipos','contador','compart','fechaseguro','fechaadr','fechaitv','fechatablas','fechatarjetatte','observaciones']
 		widgets = {
 					'matricula':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Matrícula'}),
 					'ejes':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ejes'}),
@@ -24,7 +24,8 @@ class VehiculoForm(forms.ModelForm):
 					'equipo_adicional':forms.CheckboxInput(attrs={'class':'form-control'}),
 					'equipos':forms.Textarea(attrs={'class':'form-control','placeholder':'Indicar equipos adicionales'}),
 					'contador':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Contador'}),
-					'compartimentos':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Compartimentos'}),
+					'compart':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Compartimentos'}),
+					'fechaseguro':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha Seguro'}),
 					'fechaadr':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha ADR'}),
 					'fechaitv':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha ITV'}),
 					'fechatablas':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha Tablas de Calibración'}),
@@ -38,19 +39,23 @@ class VehiculoForm(forms.ModelForm):
 					'peso_maximo':'',
 					'equipos':'Indicar equipos adicionales',
 					'contador':'',
-					'compartimentos':'',
+					'compart':'',
+					'fechaseguro':'Fecha Seguro',
 					'fechaadr': 'Fecha ADR',
 					'fechaitv':'Fecha ITV',
 					'fechatablas':'Fecha Tablas de Calibración',
 					'fechatarjetatte':'Fecha Tarjeta Tte',
 					'observaciones':'Observaciones',
 					}
+"""
+Mirar la forma de diferenciar formulario de tractora con semirremolque con cisterna
+"""
 
 class VehiculoUpdateForm(forms.ModelForm):
 	tipo = forms.ChoiceField(choices=TIPO_VEHICULO,label="",initial='',widget=forms.Select(),required=True)
 	class Meta:
 		model = Vehiculo
-		fields = ['tipo','matricula','ejes','tara','peso_maximo','carga_pesados','solo_gasoleos','no_petroliferos','carga_queroseno','equipo_adicional','equipos','contador','compartimentos','fechaadr','fechaitv','fechatablas','fechatarjetatte','observaciones']
+		fields = ['tipo','matricula','ejes','tara','peso_maximo','carga_pesados','solo_gasoleos','no_petroliferos','carga_queroseno','equipo_adicional','equipos','contador','compart','fechaseguro','fechaadr','fechaitv','fechatablas','fechatarjetatte','observaciones']
 		widgets = {
 					'matricula':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Matrícula'}),
 					'ejes':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ejes'}),
@@ -63,7 +68,8 @@ class VehiculoUpdateForm(forms.ModelForm):
 					'equipo_adicional':forms.CheckboxInput(attrs={'class':'form-control'}),
 					'equipos':forms.Textarea(attrs={'class':'form-control','placeholder':'Indicar equipos adicionales'}),
 					'contador':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Contador'}),
-					'compartimentos':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Compartimentos'}),
+					'compart':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Compartimentos'}),
+					'fechaseguro':DateInput(format=('%Y-%m-%d'), attrs={'class':'form-control', 'placeholder':'Fecha Seguro'}),
 					'fechaadr':DateInput(format=('%Y-%m-%d'), attrs={'class':'form-control', 'placeholder':'Fecha ADR'}),
 					'fechaitv':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha ITV'}),
 					'fechatablas':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha Tablas de Calibración'}),
@@ -77,7 +83,8 @@ class VehiculoUpdateForm(forms.ModelForm):
 					'peso_maximo':'',
 					'equipos':'Indicar equipos adicionales',
 					'contador':'Contador propio',
-					'compartimentos':'',
+					'compart':'',
+					'fechaseguro':'Fecha Seguro',
 					'fechaadr': 'Fecha ADR',
 					'fechaitv':'Fecha ITV',
 					'fechatablas':'Fecha Tablas de Calibración',
@@ -89,7 +96,7 @@ class VehiculoDetailForm(forms.ModelForm):
 	tipo = forms.ChoiceField(choices=TIPO_VEHICULO,label="",initial='',widget=forms.Select(),required=True)
 	class Meta:
 		model = Vehiculo
-		fields = ['tipo','matricula','ejes','tara','peso_maximo','carga_pesados','solo_gasoleos','no_petroliferos','carga_queroseno','equipo_adicional','equipos','contador','compartimentos','fechaadr','fechaitv','fechatablas','fechatarjetatte','observaciones']
+		fields = ['tipo','matricula','ejes','tara','peso_maximo','carga_pesados','solo_gasoleos','no_petroliferos','carga_queroseno','equipo_adicional','equipos','contador','compart','fechaadr','fechaitv','fechatablas','fechatarjetatte','observaciones']
 		widgets = {
 					'matricula':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Matrícula'}),
 					'ejes':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ejes'}),
@@ -102,7 +109,7 @@ class VehiculoDetailForm(forms.ModelForm):
 					'equipo_adicional':forms.CheckboxInput(attrs={'class':'form-control'}),
 					'equipos':forms.Textarea(attrs={'class':'form-control','placeholder':'Indicar equipos adicionales'}),
 					'contador':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Contador'}),
-					'compartimentos':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Compartimentos'}),
+					'compart':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Compartimentos'}),
 					'fechaadr':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha ADR'}),
 					'fechaitv':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha ITV'}),
 					'fechatablas':DateInput(format=('%Y-%m-%d'),attrs={'class':'form-control', 'placeholder':'Fecha Tablas de Calibración'}),
@@ -116,7 +123,8 @@ class VehiculoDetailForm(forms.ModelForm):
 					'peso_maximo':'',
 					'equipos':'Indicar equipos adicionales',
 					'contador':'',
-					'compartimentos':'',
+					'compart':'',
+					'fechaseguro':'fecha Seguro',
 					'fechaadr': 'Fecha ADR',
 					'fechaitv':'Fecha ITV',
 					'fechatablas':'Fecha Tablas de Calibración',
@@ -126,3 +134,21 @@ class VehiculoDetailForm(forms.ModelForm):
 
 class SearchForm(forms.Form):
     query = forms.CharField(label="",widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Buscar...'}))
+
+
+class CompartimentosForm(forms.ModelForm):
+	class Meta:
+		model = Compartimentos
+		fields = ['compartimento','capacidad','altura','tag']
+		widgets = {
+			'compartimento': forms.TextInput(attrs={'class':'form-control','placeholder':'número de compartimento'}),
+			'capacidad': forms.TextInput(attrs={'class':'form-control','placeholder':'Capacidad'}),
+			'altura': forms.TextInput(attrs={'class':'form-control','placeholder':'Altura en mm'}),
+			'tag': forms.TextInput(attrs={'class':'form-control','placeholder':'Código TAG'}),
+		}
+		labels = {
+		'compartimento': '',
+			'capacidad': '',
+			'altura': '',
+			'tag': '',
+		}
