@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'core',
     'inspecciones',
+    'pedidos',
     'profiles',
     'vehiculos',
 ]

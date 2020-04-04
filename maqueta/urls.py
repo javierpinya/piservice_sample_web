@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from vehiculos.urls import vehiculos_patterns
 from profiles.urls import profiles_patterns
+from pedidos.urls import pedidos_patterns
 from django.conf import settings
 
 urlpatterns = [
 	path('', include('core.urls')),
 	path('vehiculos/',include(vehiculos_patterns)),
     path('profiles/',include(profiles_patterns)),
+    path('pedidos/',include(pedidos_patterns)),
     path('admin/', admin.site.urls),
 ]
 

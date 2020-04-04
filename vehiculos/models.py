@@ -44,7 +44,7 @@ class Vehiculo(models.Model):
 		return self.matricula
 
 class Compartimentos(models.Model):
-	vehiculo = models.ForeignKey(Vehiculo,on_delete=models.CASCADE)
+	#vehiculo = models.ForeignKey(Vehiculo,on_delete=models.CASCADE)
 	compartimento = models.IntegerField(verbose_name='Comparimento',blank=True,null=True)
 	capacidad = models.IntegerField(verbose_name='Capacidad', blank=True,null=True)
 	altura = models.IntegerField(verbose_name='Altura',blank=True,null=True)

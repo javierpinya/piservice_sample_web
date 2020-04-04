@@ -7,7 +7,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse, reverse_lazy
-from .models import Vehiculo
+from .models import Vehiculo, Compartimentos
 from .forms import VehiculoForm,VehiculoUpdateForm,VehiculoDetailForm,SearchForm,CompartimentosForm
 from django.db.models import Q
 # Create your views here.
@@ -36,23 +36,25 @@ class VehiculoCreateView(CreateView):
 	model = Vehiculo
 	form_class = VehiculoForm
 	template_name="vehiculos/vehiculo_form.html"
-	success_url = reverse_lazy('vehiculos:vehiculos')
+	success_url = reverse_lazy('vehiculos:create_compartimento')
 
 	#def get_success_url(self):
 		#return reverse_lazy('vehiculos:create_compartimento', args=[self.object.id])
 
 @method_decorator(staff_member_required,name='dispatch')
 class CompartimentoCreateView(CreateView):
+	model = Compartimentos
 	form_class = CompartimentosForm
 	template_name = "vehiculos/vehiculo_compartimentos.html"
 	success_url = reverse_lazy('vehiculos:vehiculos')
 
+"""
 	def get_object(self):
 		return Compartimentos.objects.get_or_create(camion=self.request.GET)
 
 	def get_success_url(self):
 		return reverse_lazy('vehiculos:create_compartimento',args=[self.object.id]) + '?ok'
-
+"""
 
 @method_decorator(staff_member_required,name='dispatch')
 class VehiculoUpdateView(UpdateView):
