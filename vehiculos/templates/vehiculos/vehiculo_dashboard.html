@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Vehículos{% endblock %}
+{% block content %}
+{% include 'vehiculos/includes/vehiculos_menu.html' %}
+<main role="main">
+	<div class="container">
+		<div style="padding-top:50px; text-align:center;">
+			<div class="card-deck" >
+				<div class="card p-3 mb-2 bg-warning text-white" style="width: 18rem; text-align:center;">
+					<div class="card-body">
+						<h5 class="card-title">Próximos a caducar</h5>
+						<h3>3</h3>
+					</div>
+				</div>
+				<div class="card p-3 mb-2 bg-danger text-white" style="width: 18rem; text-align:center;">
+					<div class="card-body">
+						<h5 class="card-title">Caducados</h5>
+						<h3>2</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

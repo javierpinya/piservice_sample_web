@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -20,6 +21,9 @@ class StaffRequiredMixin(object):
 	def dispatch(self,request,*args,**kwargs):
 		return super(VehiculoCreateView,self).dispatch(request,*args,**kwargs)
 
+class VehiculoDashboard(TemplateView):
+	template_name = "vehiculos/vehiculo_dashboard.html"
+
 class VehiculoListView(ListView):
 	model = Vehiculo
 
@@ -36,10 +40,10 @@ class VehiculoCreateView(CreateView):
 	model = Vehiculo
 	form_class = VehiculoForm
 	template_name="vehiculos/vehiculo_form.html"
-	success_url = reverse_lazy('vehiculos:create_compartimento')
+	#success_url = reverse_lazy('vehiculos:create_compartimento', {'camion':self.object.id})
 
-	#def get_success_url(self):
-		#return reverse_lazy('vehiculos:create_compartimento', args=[self.object.id])
+	def get_success_url(self):
+		return reverse_lazy('vehiculos:create_compartimento',{'camion':self.object.id})
 
 @method_decorator(staff_member_required,name='dispatch')
 class CompartimentoCreateView(CreateView):
@@ -47,6 +51,7 @@ class CompartimentoCreateView(CreateView):
 	form_class = CompartimentosForm
 	template_name = "vehiculos/vehiculo_compartimentos.html"
 	success_url = reverse_lazy('vehiculos:vehiculos')
+
 
 """
 	def get_object(self):

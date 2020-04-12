@@ -9,6 +9,7 @@
       <div class="col-md-9 mx-auto">
         <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
           <div class="row">
+            {{comp}}
             {% if 'ok' in request.GET %}
             <p style="color:green;">
               Vehículo creado correctamente.

@@ -13,7 +13,7 @@ class HomePageView(TemplateView):
 		return context
 	"""
 	def get(self, request): #este método maneja la respuesta de la vista. Podemos hacer lo mismo que en el get_context_data
-		return render(request,self.template_name, {'title':"Web Playground"})
+		return render(request,self.template_name, {'title':"El Cargadero"})
 
 class SamplePageView(TemplateView):
 	template_name = "core/sample.html"
