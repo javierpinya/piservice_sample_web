@@ -3,7 +3,10 @@ from .models import Vehiculo, Compartimentos
 	
 # Register your models here.
 class VehiculoAdmin(admin.ModelAdmin):
-	list_display = ('matricula','tipo')
+	list_display = ('matricula','slug','tipo')
+	prepopulated_fields = {'slug':('matricula',)}
+	list_editable = ['tipo']
+	list_filter = ['tipo']
 
 	# Inyectamos nuestro fichero css
 	class Media:

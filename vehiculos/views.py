@@ -119,4 +119,17 @@ def detail(request,pk):
 	except Vehiculo.DoesNotExist:
 		raise Http404("Coche no existe")
 	return render(request,"vehiculos/detail.html",{'coche':coche})
+
+"""
+Creamos vistas basándonos en Django 2 By Example
+"""
+def product_list(request,compartimento_slug=None):
+	compartimento = None
+	compartimentos = Compartimentos.objects.all()
+	camiones = Vehiculo.objects.all()
+	if camiones:
+		#compartimento = get_object_or_404(Compartimento,slug=compartimento_slug)
+		camiones = camiones.filter(tipo=4)
+	return render(request,'vehiculos/list.html',{'compartimento':compartimento,'compartimentos':compartimentos,'camiones':camiones})
+
 		
